@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>tinyaudio</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <main>
+    <header class="page-header"><h1>tinyaudio</h1></header>
+    <section class="card" aria-label="Audio compression">
+      <input id="file" type="file" accept="audio/*,.wav,.mp3,.m4a,.aac,.flac,.ogg,.opus,.aiff,.aif" aria-label="Audio file" hidden>
+      <div id="setup-content" class="setup-content">
+      <button id="choose-file" class="file-picker" type="button" aria-label="Choose audio file">
+        <span class="file-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M13 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9l-6-6Z"/><path d="M13 3v6h6M9 13v4m3-6v8m3-6v4"/></svg></span>
+        <span class="file-info"><strong id="file-name">Choose an audio file</strong><span id="file-meta">or drop it here</span></span>
+        <span id="file-action" class="file-action">Browse</span>
+      </button>
+      <div class="settings">
+        <div class="field">
+          <div class="field-label"><label class="target-toggle"><input id="target-enabled" type="checkbox" checked>Target size</label><span class="help"><button id="target-help" class="help-button" type="button" aria-label="About target size" aria-describedby="target-tooltip">i</button><span id="target-tooltip" class="tooltip" role="tooltip">Estimates the best starting quality for your target size, then tries lower qualities if the output is still too large.</span></span></div>
+          <div class="number-field"><input id="limit" type="number" min="0.000001" step="any" value="100" required aria-label="Target size (MB)"><span>MB</span></div>
+        </div>
+        <div class="field">
+          <label id="quality-label" for="start-quality">Starting quality</label>
+          <div id="quality-picker" class="quality-picker">
+            <button id="start-quality" class="quality-trigger" type="button" value="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="quality-options" aria-labelledby="quality-label selected-quality" disabled><span id="selected-quality">Highest (VBR0)</span><span id="suggested" class="badge" hidden>Suggested</span><svg viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg></button>
+            <div id="quality-options" class="quality-options" role="listbox" aria-labelledby="quality-label" hidden></div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div id="setup-actions" class="actions">
+        <button id="compress" class="button compress-button" type="button" disabled>Compress</button>
+        <button id="start-over" class="button start-over-button" type="button" hidden>Start over</button>
+      </div>
+      <p id="error" class="error" role="alert" hidden></p>
+    </section>
+    <section id="results" class="card result-card" aria-label="Results" hidden>
+      <div class="section-heading"><h2>Results</h2></div>
+      <table aria-label="Compression results">
+        <thead><tr><th>Quality</th><th>Status</th><th>Size</th><th><span class="sr-only">Action</span></th></tr></thead>
+        <tbody id="result-list"></tbody>
+      </table>
+      <details id="other-qualities">
+        <summary>Other qualities</summary>
+        <table aria-label="Other qualities">
+          <thead><tr><th>Quality</th><th>Status</th><th>Size</th><th><span class="sr-only">Action</span></th></tr></thead>
+          <tbody id="other-list"></tbody>
+        </table>
+      </details>
+    </section>
+    <p id="announcement" class="sr-only" role="status"></p>
+    <footer>LAME (LGPL-2.0+) · wasm-media-encoders (MIT) · Mediabunny (MPL-2.0)</footer>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+    <span id="toast-message"></span>
+    <button id="toast-close" type="button" aria-label="Dismiss notification">×</button>
+  </div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
