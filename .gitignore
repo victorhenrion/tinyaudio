@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.sites-runtime/
+*.tgz
+*.tar.gz
+!public/source/*.tar.gz
+.DS_Store

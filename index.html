@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compress one audio file to an MP3 under 100 MB, locally in your browser.">
+  <title>tinyaudio</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <main>
+    <h1>tinyaudio</h1>
+    <p>MP3 · VBR · under 100 MB</p>
+    <input id="file" type="file" accept="audio/*,.wav,.mp3,.m4a,.aac,.flac,.ogg,.opus,.aiff,.aif" aria-label="Audio file">
+    <div class="actions">
+      <button id="compress" type="button" disabled>Compress</button>
+      <button id="cancel" type="button" hidden>Cancel</button>
+      <a id="download" hidden>Download MP3</a>
+    </div>
+    <progress id="progress" max="100" hidden aria-label="Current encoding pass"></progress>
+    <p id="status" role="status">Choose one audio file. Processing stays on your device.</p>
+    <p id="error" role="alert" hidden></p>
+    <a class="licenses" href="./licenses.html">Licenses</a>
+  </main>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
